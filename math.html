@@ -31,3 +31,44 @@
             document.getElementById('result').innerHTML = `Sum of first powers with base ${second} is ${sum}`;
         }
     </script>
+     <form>
+        <label><input type="radio" name="calc" value="max" onclick="processRadio()"> Max</label><br>
+        <label><input type="radio" name="calc" value="min" onclick="processRadio()"> Min</label><br>
+        <label><input type="radio" name="calc" value="avg" onclick="processRadio()"> Average</label><br>
+        <label><input type="radio" name="calc" value="geo" onclick="processRadio()"> Geometric Mean</label><br>
+    </form>
+
+    <p id="radioResult"></p>
+
+    <script>
+        function processRadio() {
+            const first = parseInt(document.getElementById('first').value);
+            const second = parseInt(document.getElementById('second').value);
+            let result;
+            const radios = document.getElementsByName('calc');
+
+            radios.forEach((radio) => {
+                if (radio.checked) {
+                    switch (radio.value) {
+                        case 'max':
+                            result = Math.max(first, second);
+                            break;
+                        case 'min':
+                            result = Math.min(first, second);
+                            break;
+                        case 'avg':
+                            result = (first + second) / 2;
+                            break;
+                        case 'geo':
+                            result = Math.sqrt(first * second);
+                            break;
+                    }
+                    document.getElementById('radioResult').innerHTML = `Computed ${radio.value} with values ${first} and ${second}: ${result}`;
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

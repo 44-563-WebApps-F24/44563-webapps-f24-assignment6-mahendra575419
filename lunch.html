@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>It's time for Lunch</title>
+    </head>
+<body>
+
+<h2>Mahendra kumar orders a lunch </h2>
+
+<form>
+    <input type="checkbox" id="Drink" name="option1" value="drink" checked>
+    <label for="Drink">Drink</label></br>
+      
+    <input type="checkbox" id="Side" name="option2" value="side">
+    <label for="Side">Side</label></br>
+      
+    <input type="checkbox" id="Eat in" name="topping3" value="in" checked>
+    <label for="Eat in">Eat in</label></br>
+
+    <input type="button" onclick="startLunch()" value="Start a lunch order">
+</form>
+
+
+<p id="result">Your order will be displayed here</p>
+
+<script> 
+let my_lunch = {};
+
+function startLunch() {
+    my_lunch = {};  
+
+    my_lunch.beverage = document.getElementById("beverage").checked;
+    my_lunch.snack = document.getElementById("snack").checked;
+    my_lunch.dineIn = document.getElementById("dineIn").checked;
+
+    document.getElementById("orderResult").innerHTML = 
+        `Your lunch order: Drink: ${my_lunch.beverage}, Side: ${my_lunch.snack}, Eat in: ${my_lunch.dineIn}`;
+}
+</script>
+
+<div class="container mt-4">
+<form>
+    <div class="mb-3">
+        <label for="propertyName" class="form-label">Enter property:</label>
+        <input type="text" id="propertyName" class="form-control" value="entree">
+    </div>
+    <div class="mb-3">
+        <label for="propertyValue" class="form-label">Set it to:</label>
+        <input type="text" id="propertyValue" class="form-control">
+    </div>
+
+    <button type="button" class="btn btn-secondary" onclick="updateLunch()">Update the lunch</button>
+</form>
+
+<p id="updatedOrderResult"></p>
+</div>
+
+<script>
+function updateLunch() {
+    const propertyName = document.getElementById("propertyName").value;
+    const propertyValue = document.getElementById("propertyValue").value;
+
+    my_lunch[propertyName] = propertyValue;
+
+    document.getElementById("updatedOrderResult").innerHTML = JSON.stringify(my_lunch);
+}
+</script>
+
+</body>
+</html>
